@@ -1,0 +1,16 @@
+name: Snyk Scan using GitHub Actions with Continue on Error as False
+# on:
+#   push:
+#     branches:
+#       - main
+jobs:
+  build:
+    name: SCA scan using Snyk
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: RunSnyk to check for vulnerabilities
+        uses: snyk/actions/maven@master
+        continue-on-error: false
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

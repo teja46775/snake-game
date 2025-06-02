@@ -1,0 +1,18 @@
+name: OWASP ZAP Integration with GitHub Actions
+# on: 
+#   push:
+#     branches:
+#       - main
+jobs:
+  build:
+    name: DAST scan using OWASP ZAP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          target: 'https://www.zaproxy.org'
